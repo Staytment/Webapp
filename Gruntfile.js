@@ -22,12 +22,6 @@ module.exports = function(grunt) {
             flatten: true,
             src: ['bootstrap/dist/fonts/*'],
             dest: 'dist/fonts/'
-          },
-          {
-            expand: true,
-            flatten: true,
-            src: ['templates/*'],
-            dest: 'dist/'
           }
         ]
       }
@@ -39,7 +33,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Default task(s).
-  grunt.registerTask('dist', function () {
+  grunt.registerTask('bootstrap', function () {
     var done = this.async();
     grunt.util.spawn({
       grunt: true,
@@ -52,5 +46,5 @@ module.exports = function(grunt) {
     });
   });
 
-  grunt.registerTask('default', ['dist', 'copy']);
+  grunt.registerTask('default', ['bootstrap', 'copy']);
 };
