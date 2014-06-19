@@ -1,4 +1,4 @@
-function init() {
+$(function() {
   map = new OpenLayers.Map("map");
   var mapnik = new OpenLayers.Layer.OSM();
   map.addLayer(mapnik);
@@ -15,4 +15,4 @@ function init() {
 //        markers.addMarker(new OpenLayers.Marker(lonlat));
 
   map.setCenter(lonlat, zoom);
-}
+});
