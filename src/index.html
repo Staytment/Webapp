@@ -8,12 +8,14 @@
 
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/leaflet-dist/leaflet-src.js"></script>
+    <script src="bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js"></script>
     <script src="js/controllers.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="bower_components/openlayers/lib/OpenLayers.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="js/map.js"></script>
 
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.css" >
+    <link rel="stylesheet" href="bower_components/leaflet-dist/leaflet.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -35,6 +37,6 @@
         </div>
       </div>
     </div>
-    <div id="map"></div>
+    <leaflet id="map"></leaflet>
   </body>
 </html>

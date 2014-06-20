@@ -1,4 +1,4 @@
-var staytment = angular.module('staytment', []);
+var staytment = angular.module('staytment', ['leaflet-directive']);
 
 staytment.controller('Navigation', function($scope) {
   $scope.items = [
