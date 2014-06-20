@@ -14,7 +14,7 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="js/map.js"></script>
 
-    <link rel="stylesheet" href="css/bootstrap.css" >
+    <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="bower_components/leaflet-dist/leaflet.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -32,11 +32,13 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li ng-repeat="item in items" ng-class="{'active': item.active}" "><a href="#">{{ item.title }}</a></li>
+            <li ng-repeat="item in items" ng-class="{'active': item.active}"><a href="#">{{ item.title }}</a></li>
           </ul>
         </div>
       </div>
     </div>
-    <leaflet id="map"></leaflet>
+    <div id="mapContainer" ng-controller="Map">
+      <leaflet id="map" center="center" url-hash-center="yes" markers="markers"></leaflet>
+    </div>
   </body>
 </html>
