@@ -1,4 +1,4 @@
-var staytment = angular.module('staytment', ['leaflet-directive']);
+var staytment = angular.module('staytment', ['leaflet-directive', 'config']);
 
 staytment.controller('Navigation', function ($scope) {
   $scope.items = [
@@ -7,7 +7,7 @@ staytment.controller('Navigation', function ($scope) {
   ];
 });
 
-staytment.controller('Map', ['$scope', '$location', function ($scope, $location) {
+staytment.controller('Map', ['$scope', '$http', '$location', 'DOMAIN_API', function ($scope, $http, $location, DOMAIN_API) {
   var markers = {
     myMarker: {
       lat: 51.325,
@@ -35,17 +35,21 @@ staytment.controller('Map', ['$scope', '$location', function ($scope, $location)
     markers: markers
   });
   setInterval(function () {
-    angular.extend($scope, {
-      markers: {
-        someMarker: {
-          lat: 51.315,
-          lng: 9.439,
-          message: 'WTF',
+    $http.get(DOMAIN_API + '/posts').success(function (data) {
+      var markers = {};
+      for (var i = 0; i < data.length; i++) {
+        markers[data[i]._id] = {
+          lat: data[i].lat,
+          lng: data[i].long,
+          message: data[i].message,
           focus: true,
           draggable: false,
           autoPan: false
-        }
+        };
       }
+      angular.extend($scope, {
+        markers: markers
+      });
     });
   }, 3000);
   $scope.$on('centerUrlHash', function (event, centerHash) {
