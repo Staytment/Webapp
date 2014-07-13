@@ -17,7 +17,7 @@ staytment.controller('Map', ['$scope', '$http', '$location', 'DOMAIN_API', funct
         markers[data[i]._id] = {
           lat: data[i].lat,
           lng: data[i].long,
-          message: lat + ',' + long, // data[i].message,
+          message: data[i].message,
           focus: true,
           draggable: false,
           autoPan: false
