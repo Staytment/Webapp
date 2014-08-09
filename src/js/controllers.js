@@ -15,8 +15,8 @@ staytment.controller('Map', ['$scope', '$http', '$location', 'DOMAIN_API', funct
       var markers = {};
       for (var i = 0; i < data.length; i++) {
         markers[data[i]._id] = {
-          lat: data[i].lat,
-          lng: data[i].long,
+          lat: data[i].coordinates[1],
+          lng: data[i].coordinates[0],
           message: data[i].message,
           focus: true,
           draggable: false,
