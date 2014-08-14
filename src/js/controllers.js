@@ -13,11 +13,12 @@ staytment.controller('Map', ['$scope', '$http', '$location', 'DOMAIN_API', funct
     var long = $scope.center.lng;
     $http.get(DOMAIN_API + '/posts').success(function (data) {
       var markers = {};
-      for (var i = 0; i < data.length; i++) {
-        markers[data[i]._id] = {
-          lat: data[i].coordinates[1],
-          lng: data[i].coordinates[0],
-          message: data[i].message,
+      var features = data.features;
+      for (var i = 0; i < features.length; i++) {
+        markers[features[i]._id] = {
+          lat: features[i].geometry.coordinates[1],
+          lng: features[i].geometry.coordinates[0],
+          message: features[i].properties.message,
           focus: true,
           draggable: false,
           autoPan: false
