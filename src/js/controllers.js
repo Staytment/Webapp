@@ -30,12 +30,18 @@ staytment.controller('Map', ['$scope', '$http', '$location', 'DOMAIN_API', funct
     });
   }
 
+  navigator.geolocation.getCurrentPosition(function(position) {
+    $scope.$apply(function(){
+      $scope.center = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+        zoom: 12
+      }
+    })
+  });
+
   angular.extend($scope, {
-    center: {
-      lat: 51.3,
-      lng: 9.5,
-      zoom: 12
-    },
+    center: {},
     events: {
       map: {
         enable: ['zoomend', 'moveend'],
