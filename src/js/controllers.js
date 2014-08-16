@@ -1,10 +1,16 @@
-var staytment = angular.module('staytment', ['leaflet-directive', 'config']);
+var staytment = angular.module('staytment', ['leaflet-directive', 'config', 'services']);
 
-staytment.controller('Navigation', function ($scope) {
+staytment.controller('Navigation', function ($scope, Posts) {
   $scope.items = [
     {title: 'Live', active: true},
     {title: 'Foobar'}
   ];
+
+  $scope.message = "";
+
+  $scope.postMessage = function() {
+    Posts.newPost($scope.message);
+  }
 });
 
 staytment.controller('Map', ['$scope', '$http', '$location', 'DOMAIN_API', function ($scope, $http, $location, DOMAIN_API) {
