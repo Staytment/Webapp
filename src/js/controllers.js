@@ -30,9 +30,7 @@ staytment.controller('Map', ['$scope', '$http', '$location', 'DOMAIN_API', funct
           autoPan: false
         };
       }
-      angular.extend($scope, {
-        markers: markers
-      });
+      $scope.markers = markers;
     });
   }
 
