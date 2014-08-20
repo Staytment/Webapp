@@ -9,6 +9,10 @@ html,
 body {
   height: 100%;
 }
+.leaflet-popup-content .author {
+  text-align: right;
+  font-size: 8pt;
+}
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;

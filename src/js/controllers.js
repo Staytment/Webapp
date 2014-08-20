@@ -1,4 +1,4 @@
-var staytment = angular.module('staytment', ['leaflet-directive', 'config', 'services']);
+var staytment = angular.module('staytment', ['leaflet-directive', 'config', 'services', 'ngSanitize']);
 
 staytment.controller('Navigation', function ($scope, Posts) {
   $scope.items = [
@@ -13,18 +13,19 @@ staytment.controller('Navigation', function ($scope, Posts) {
   }
 });
 
-staytment.controller('Map', ['$scope', '$http', '$location', 'DOMAIN_API', function ($scope, $http, $location, DOMAIN_API) {
+staytment.controller('Map', ['$scope', '$http', '$location', '$sanitize', 'DOMAIN_API', function ($scope, $http, $location, $sanitize, DOMAIN_API) {
   function fetchPosts(event) {
     var lat = $scope.center.lat;
     var long = $scope.center.lng;
-    $http.get(DOMAIN_API + '/posts').success(function (data) {
+    $http.get(DOMAIN_API + '/posts?filter=point&long=' + long + '&lat=' + lat + '&distance=1000000').success(function (data) {
       var markers = {};
       var features = data.features;
       for (var i = 0; i < features.length; i++) {
+        var message = '<p class="message" >' + $sanitize(features[i].properties.message) + '</p><div class="author">' + $sanitize(features[i].properties.user.name) + '</div>';
         markers[features[i]._id] = {
           lat: features[i].geometry.coordinates[1],
           lng: features[i].geometry.coordinates[0],
-          message: features[i].properties.message,
+          message: message,
           focus: true,
           draggable: false,
           autoPan: false
@@ -35,13 +36,13 @@ staytment.controller('Map', ['$scope', '$http', '$location', 'DOMAIN_API', funct
   }
 
   navigator.geolocation.getCurrentPosition(function(position) {
-    $scope.$apply(function(){
-      $scope.center = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-        zoom: 12
-      }
-    })
+//    $scope.$apply(function(){
+//      $scope.center = {
+//        lat: position.coords.latitude,
+//        lng: position.coords.longitude,
+//        zoom: 12
+//      }
+//    })
   });
 
   angular.extend($scope, {
