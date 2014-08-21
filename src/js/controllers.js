@@ -60,6 +60,12 @@ staytment.controller('Map', ['$scope', '$http', '$location', '$sanitize', 'DOMAI
     $location.search({ c: centerHash });
   });
 
-  $scope.$on('leafletDirectiveMap.zoomend', fetchPosts);
-  $scope.$on('leafletDirectiveMap.moveend', fetchPosts);
+  $scope.$on('leafletDirectiveMap.zoomend', function(){
+    console.log('zoomend');
+    fetchPosts()
+  });
+  $scope.$on('leafletDirectiveMap.moveend', function(){
+    console.log('moveend');
+    fetchPosts()
+  });
 }]);
