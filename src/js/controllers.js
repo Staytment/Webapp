@@ -1,4 +1,4 @@
-var staytment = angular.module('staytment', ['leaflet-directive', 'config', 'services', 'ngSanitize']);
+var staytment = angular.module('staytment', ['config', 'services', 'ngSanitize']);
 
 staytment.controller('Navigation', function ($scope, Posts) {
   $scope.items = [
@@ -59,7 +59,4 @@ staytment.controller('Map', ['$scope', '$http', '$location', '$sanitize', 'DOMAI
   $scope.$on('centerUrlHash', function (event, centerHash) {
     $location.search({ c: centerHash });
   });
-
-  $scope.$on('leafletDirectiveMap.zoomend', fetchPosts);
-  $scope.$on('leafletDirectiveMap.moveend', fetchPosts);
 }]);
