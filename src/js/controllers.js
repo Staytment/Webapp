@@ -8,34 +8,64 @@ staytment.controller('Navigation', function ($scope, Posts) {
 
   $scope.message = "";
 
-  $scope.postMessage = function() {
+  $scope.postMessage = function () {
     Posts.newPost($scope.message);
   }
 });
 
 staytment.controller('Map', ['$scope', '$http', '$location', '$sanitize', 'DOMAIN_API', function ($scope, $http, $location, $sanitize, DOMAIN_API) {
+
+  var map = L.map('map').setView([51.3, 9.5], 10);
+  L.tileLayer('http://{s}.tiles.mapbox.com/v3/swegener.jckkpg0b/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 18
+  }).addTo(map);
+
+  $scope.map = map;
+  $scope.markers = {};
+
   function fetchPosts(event) {
-    var lat = $scope.center.lat;
-    var long = $scope.center.lng;
-    $http.get(DOMAIN_API + '/posts?filter=point&long=' + long + '&lat=' + lat + '&distance=1000000').success(function (data) {
-      var markers = {};
+    var LatLng = $scope.map.getCenter();
+    var lat = LatLng.lat;
+    var long = LatLng.lng;
+
+    $http.get(DOMAIN_API + '/posts?filter=point&long=' + long + '&lat=' + lat + '&distance=100000').success(function (data) {
+      var item;
+      var items = {};
       var features = data.features;
       for (var i = 0; i < features.length; i++) {
         var message = '<p class="message" >' + $sanitize(features[i].properties.message) + '</p><div class="author">' + $sanitize(features[i].properties.user.name) + '</div>';
-        markers[features[i]._id] = {
+        items[features[i]._id] = {
           lat: features[i].geometry.coordinates[1],
           lng: features[i].geometry.coordinates[0],
-          message: message,
-          focus: true,
-          draggable: false,
-          autoPan: false
+          message: message
         };
       }
-      $scope.markers = markers;
+
+      var key;
+      for (key in $scope.markers) {
+        if (!(key in items)) {
+          $scope.map.removeLayer($scope.markers[key]);
+          delete $scope.markers[key];
+        }
+      }
+      for (key in items) {
+        item = items[key];
+        if (!(key in $scope.markers)) {
+          var marker = L.marker([item.lat, item.lng]).addTo($scope.map);
+          var popup = L.popup({
+            autoPan: false,
+            riseOnHover: true
+          }).setContent(item.message);
+          marker.bindPopup(popup).openPopup();
+          map.addLayer(marker);
+          $scope.markers[key] = marker;
+        }
+      }
     });
   }
 
-  navigator.geolocation.getCurrentPosition(function(position) {
+  navigator.geolocation.getCurrentPosition(function (position) {
 //    $scope.$apply(function(){
 //      $scope.center = {
 //        lat: position.coords.latitude,
@@ -45,16 +75,8 @@ staytment.controller('Map', ['$scope', '$http', '$location', '$sanitize', 'DOMAI
 //    })
   });
 
-  angular.extend($scope, {
-    center: {},
-    events: {
-      map: {
-        enable: ['zoomend', 'moveend'],
-        logic: 'emit'
-      }
-    },
-    markers: {}
-  });
+  map.on('moveend', fetchPosts);
+  map.on('zoomend', fetchPosts);
 
   $scope.$on('centerUrlHash', function (event, centerHash) {
     $location.search({ c: centerHash });

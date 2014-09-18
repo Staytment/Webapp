@@ -12,7 +12,7 @@ services.service('Posts', ['$http', 'DOMAIN_API', 'TEST_API_KEY',
             position.coords.longitude,
             position.coords.latitude
           ]
-        }
+        };
         var promise = $http.post(DOMAIN_API+'/posts/?api_key='+TEST_API_KEY, data);
         if(callback) promise.success(callback);
       });
