@@ -27,16 +27,17 @@ staytment.controller('Map', ['$scope', '$http', '$location', '$sanitize', 'DOMAI
   function fetchPosts(event) {
 
     var bounds = $scope.map.getBounds();
-    var LatLng = bounds.getNorthWest();
+    var LatLng;
+    LatLng = bounds.getNorthWest();
     var lat1 = LatLng.lat;
     var long1 = LatLng.lng;
-    var LatLng = bounds.getNorthEast();
+    LatLng = bounds.getNorthEast();
     var lat2 = LatLng.lat;
     var long2 = LatLng.lng;
-    var LatLng = bounds.getSouthEast();
+    LatLng = bounds.getSouthEast();
     var lat3 = LatLng.lat;
     var long3 = LatLng.lng;
-    var LatLng = bounds.getSouthWest();
+    LatLng = bounds.getSouthWest();
     var lat4 = LatLng.lat;
     var long4 = LatLng.lng;
 
