@@ -58,8 +58,8 @@
       <file leaf-file-name="controllers.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8809832" vertical-offset="285" max-vertical-offset="2323">
-              <caret line="42" column="187" selection-start-line="42" selection-start-column="187" selection-end-line="42" selection-end-column="187" />
+            <state vertical-scroll-proportion="0.6429495" vertical-offset="423" max-vertical-offset="2346">
+              <caret line="40" column="4" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -478,7 +478,15 @@
       <created>1412119424813</created>
       <updated>1412119424813</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Some IntelliJ files.">
+      <created>1412119433834</created>
+      <updated>1412119433834</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Don't use var multiple times for the same variable.">
+      <created>1412119482937</created>
+      <updated>1412119482937</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -544,7 +552,9 @@
     <MESSAGE value="Updated workspace.xml&#10;." />
     <MESSAGE value="Use new api endpoint." />
     <MESSAGE value="Fetch posts in map boundaries." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fetch posts in map boundaries." />
+    <MESSAGE value="Some IntelliJ files." />
+    <MESSAGE value="Don't use var multiple times for the same variable." />
+    <option name="LAST_COMMIT_MESSAGE" value="Don't use var multiple times for the same variable." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -936,8 +946,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8809832" vertical-offset="285" max-vertical-offset="2323">
-          <caret line="42" column="187" selection-start-line="42" selection-start-column="187" selection-end-line="42" selection-end-column="187" />
+        <state vertical-scroll-proportion="0.6429495" vertical-offset="423" max-vertical-offset="2346">
+          <caret line="40" column="4" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="4" />
           <folding />
         </state>
       </provider>
