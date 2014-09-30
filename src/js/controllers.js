@@ -29,7 +29,7 @@ staytment.controller('Map', ['$scope', '$http', '$location', '$sanitize', 'DOMAI
     var lat = LatLng.lat;
     var long = LatLng.lng;
 
-    $http.get(DOMAIN_API + '/posts?filter=point&long=' + long + '&lat=' + lat + '&distance=100000').success(function (data) {
+    $http.get(DOMAIN_API + '/posts/by-point?long=' + long + '&lat=' + lat + '&distance=100000').success(function (data) {
       var item;
       var items = {};
       var features = data.features;
