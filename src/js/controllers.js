@@ -31,17 +31,11 @@ staytment.controller('Map', ['$scope', '$http', '$location', '$sanitize', 'DOMAI
     LatLng = bounds.getNorthWest();
     var lat1 = LatLng.lat;
     var long1 = LatLng.lng;
-    LatLng = bounds.getNorthEast();
+    LatLng = bounds.getSouthEast();
     var lat2 = LatLng.lat;
     var long2 = LatLng.lng;
-    LatLng = bounds.getSouthEast();
-    var lat3 = LatLng.lat;
-    var long3 = LatLng.lng;
-    LatLng = bounds.getSouthWest();
-    var lat4 = LatLng.lat;
-    var long4 = LatLng.lng;
 
-    $http.get(DOMAIN_API + '/posts/by-rectangle?long1=' + long1 + '&lat1=' + lat1 + '&long2=' + long2 + '&lat2=' + lat2 + '&long3=' + long3 + '&lat3=' + lat3 + '&long4=' + long4 + '&lat4=' + lat4).success(function (data) {
+    $http.get(DOMAIN_API + '/posts/by-rectangle?long1=' + long1 + '&lat1=' + lat1 + '&long2=' + long2 + '&lat2=' + lat2).success(function (data) {
       var item;
       var items = {};
       var features = data.features;
