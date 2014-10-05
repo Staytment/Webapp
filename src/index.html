@@ -43,15 +43,31 @@
           </ul>
           <form class="navbar-form navbar-right" ng-submit="postMessage()">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="message" ng-model="message" />
+              <input type="text" class="form-control" placeholder="message" ng-model="message"/>
             </div>
             <button type="submit" class="btn btn-default">Post</button>
           </form>
         </div>
       </div>
     </div>
-    <div id="mapContainer">
-      <div id="map" ng-controller="Map"></div>
+    <div ng-controller="Map" id="mapContainer">
+      <form class="form-horizontal" role="form">
+        <div class="form-group">
+          <label for="vertical_resolution" class="col-sm-5">Vertical resolution:</label>
+
+          <div class="col-sm-1">
+            <input id="vertical_resolution" type="text" class="form-control" placeholder="Vert. res"
+                   ng-model="vertical_resolution"/>
+          </div>
+          <label for="horizontal_resolution" class="col-sm-5">Horizontal resolution:</label>
+
+          <div class="col-sm-1">
+            <input id="horizontal_resolution" type="text" class="form-control" placeholder="Hor. res"
+                   ng-model="horizontal_resolution"/>
+          </div>
+        </div>
+      </form>
+      <div id="map"></div>
       <!--<leaflet id="map" center="center" url-hash-center="yes" markers="markers" event-broadcast="events"></leaflet>-->
     </div>
     <script src="js/map.js"></script>

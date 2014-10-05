@@ -16,6 +16,8 @@ staytment.controller('Navigation', function ($scope, Posts) {
 staytment.controller('Map', ['$scope', '$http', '$location', '$sanitize', 'DOMAIN_API', function ($scope, $http, $location, $sanitize, DOMAIN_API) {
 
   var map = L.map('map').setView([51.3, 9.5], 10);
+  $scope.vertical_resolution = 4;
+  $scope.horizontal_resolution = 6;
   L.tileLayer('http://{s}.tiles.mapbox.com/v3/swegener.jckkpg0b/{z}/{x}/{y}.png', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
     maxZoom: 18
@@ -35,7 +37,7 @@ staytment.controller('Map', ['$scope', '$http', '$location', '$sanitize', 'DOMAI
     var lat2 = LatLng.lat;
     var long2 = LatLng.lng;
 
-    $http.get(DOMAIN_API + '/posts/by-rectangle?long1=' + long1 + '&lat1=' + lat1 + '&long2=' + long2 + '&lat2=' + lat2).success(function (data) {
+    $http.get(DOMAIN_API + '/posts/by-rectangle?long1=' + long1 + '&lat1=' + lat1 + '&long2=' + long2 + '&lat2=' + lat2 + '&vertical_resolution=' + $scope.vertical_resolution + '&horizontal_resolution=' + $scope.horizontal_resolution).success(function (data) {
       var item;
       var items = {};
       var features = data.features;
@@ -70,6 +72,9 @@ staytment.controller('Map', ['$scope', '$http', '$location', '$sanitize', 'DOMAI
       }
     });
   }
+
+  $scope.$watch('vertical_resolution', fetchPosts);
+  $scope.$watch('horizontal_resolution', fetchPosts);
 
   navigator.geolocation.getCurrentPosition(function (position) {
 //    $scope.$apply(function(){
